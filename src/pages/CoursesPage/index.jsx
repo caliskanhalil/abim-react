@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { coursesData } from '../../data/mockCourses';
 import { FaCalendar, FaClock, FaArrowRight, FaGift } from 'react-icons/fa';
+import ApplicationModal from './ApplicationModal';
 
 const CoursesPage = () => {
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [selectedCourseId, setSelectedCourseId] = useState(null);
+
+  const handleApply = (courseId) => {
+    setSelectedCourseId(courseId);
+    setShowModal(true);
+  };
 
   return (
     <>
@@ -70,7 +78,7 @@ const CoursesPage = () => {
                       <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" />
                     </button>
                     <button
-                      onClick={() => navigate('/iletisim')}
+                      onClick={() => handleApply(course.id)}
                       className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
                     >
                       Başvur
@@ -82,6 +90,12 @@ const CoursesPage = () => {
           </div>
         </div>
       </div>
+
+      <ApplicationModal 
+        show={showModal}
+        handleClose={() => setShowModal(false)}
+        courseId={selectedCourseId}
+      />
     </>
   );
 };

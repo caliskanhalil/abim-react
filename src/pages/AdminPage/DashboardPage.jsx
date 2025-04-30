@@ -1,31 +1,15 @@
 import { useState, useEffect } from 'react';
 import { FaPlus, FaEdit, FaTrash, FaSpinner, FaGraduationCap, FaBook, FaNewspaper, FaTimes } from 'react-icons/fa';
+import { 
+  getStudents, 
+  addStudent, 
+  updateStudent, 
+  deleteStudent,
+  getDashboardStats,
+  getCourses
+} from '../../firebase/services';
 
-// Örnek öğrenci verisi
-const initialStudents = [
-  {
-    id: '1',
-    name: 'Ahmet Yılmaz',
-    email: 'ahmet@example.com',
-    phone: '555-0001',
-    courseId: '1',
-    courseName: 'HTML EĞİTİMİ',
-    registrationDate: '2024-03-15',
-    status: 'active'
-  },
-  {
-    id: '2',
-    name: 'Ayşe Demir',
-    email: 'ayse@example.com',
-    phone: '555-0002',
-    courseId: '2',
-    courseName: 'JAVASCRIPT EĞİTİMİ',
-    registrationDate: '2024-03-16',
-    status: 'active'
-  }
-];
-
-const StudentEditModal = ({ isOpen, onClose, student, onSave }) => {
+const StudentEditModal = ({ isOpen, onClose, student, onSave, courses }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,7 +17,8 @@ const StudentEditModal = ({ isOpen, onClose, student, onSave }) => {
     courseId: '',
     courseName: '',
     registrationDate: '',
-    status: 'active'
+    status: 'active',
+    paymentStatus: 'pending'
   });
 
   useEffect(() => {
@@ -47,7 +32,8 @@ const StudentEditModal = ({ isOpen, onClose, student, onSave }) => {
         courseId: '',
         courseName: '',
         registrationDate: new Date().toISOString().split('T')[0],
-        status: 'active'
+        status: 'active',
+        paymentStatus: 'pending'
       });
     }
   }, [student]);
@@ -135,13 +121,26 @@ const StudentEditModal = ({ isOpen, onClose, student, onSave }) => {
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Kurs
               </label>
-              <input
-                type="text"
+              <select
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                value={formData.courseName}
-                onChange={(e) => setFormData({ ...formData, courseName: e.target.value })}
-              />
+                value={formData.courseId}
+                onChange={(e) => {
+                  const selectedCourse = courses.find(course => course.id === e.target.value);
+                  setFormData({
+                    ...formData,
+                    courseId: e.target.value,
+                    courseName: selectedCourse ? selectedCourse.mainTitle : ''
+                  });
+                }}
+              >
+                <option value="">Kurs Seçin</option>
+                {courses.map(course => (
+                  <option key={course.id} value={course.id}>
+                    {course.mainTitle}
+                  </option>
+                ))}
+              </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -154,6 +153,23 @@ const StudentEditModal = ({ isOpen, onClose, student, onSave }) => {
               >
                 <option value="active">Aktif</option>
                 <option value="inactive">Pasif</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Ödeme Durumu
+              </label>
+              <select
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                value={formData.paymentStatus}
+                onChange={(e) => setFormData({ ...formData, paymentStatus: e.target.value })}
+              >
+                <option value="pending">Beklemede</option>
+                <option value="paid">Ödendi</option>
+                <option value="partial">Kısmi Ödeme</option>
               </select>
             </div>
           </div>
@@ -180,39 +196,50 @@ const StudentEditModal = ({ isOpen, onClose, student, onSave }) => {
 };
 
 const DashboardPage = () => {
-  const [students, setStudents] = useState(initialStudents);
+  const [students, setStudents] = useState([]);
+  const [courses, setCourses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
+  const [stats, setStats] = useState({
+    totalStudents: 0,
+    totalCourses: 0,
+    totalBlogs: 0
+  });
 
-  // İstatistikler
-  const stats = [
-    {
-      title: 'Toplam Öğrenci',
-      value: students.length,
-      icon: <FaGraduationCap className="text-blue-500" />,
-      bgColor: 'bg-blue-50'
-    },
-    {
-      title: 'Aktif Kurslar',
-      value: '3',
-      icon: <FaBook className="text-green-500" />,
-      bgColor: 'bg-green-50'
-    },
-    {
-      title: 'Blog Yazıları',
-      value: '12',
-      icon: <FaNewspaper className="text-purple-500" />,
-      bgColor: 'bg-purple-50'
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const [studentsData, coursesData, dashboardStats] = await Promise.all([
+        getStudents(),
+        getCourses(),
+        getDashboardStats()
+      ]);
+
+      setStudents(studentsData);
+      setCourses(coursesData);
+      setStats({
+        totalStudents: dashboardStats.totalStudents,
+        totalCourses: dashboardStats.totalCourses,
+        totalBlogs: dashboardStats.totalBlogs
+      });
+    } catch (error) {
+      console.error('Veri yükleme hatası:', error);
+    } finally {
+      setIsLoading(false);
     }
-  ];
+  };
 
   const handleDelete = async (id) => {
     if (window.confirm('Bu öğrenciyi silmek istediğinize emin misiniz?')) {
       setIsLoading(true);
       try {
-        await new Promise(resolve => setTimeout(resolve, 500));
-        setStudents(students.filter(student => student.id !== id));
+        await deleteStudent(id);
+        await fetchData(); // Listeyi yenile
       } catch (error) {
         console.error('Silme işlemi başarısız:', error);
       } finally {
@@ -221,21 +248,49 @@ const DashboardPage = () => {
     }
   };
 
-  const handleSave = (studentData) => {
-    if (selectedStudent) {
-      setStudents(students.map(student => 
-        student.id === selectedStudent.id ? { ...studentData, id: student.id } : student
-      ));
-    } else {
-      setStudents([...students, { ...studentData, id: Date.now().toString() }]);
+  const handleSave = async (studentData) => {
+    setIsLoading(true);
+    try {
+      if (selectedStudent) {
+        await updateStudent(selectedStudent.id, studentData);
+      } else {
+        await addStudent(studentData);
+      }
+      await fetchData(); // Listeyi yenile
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('Kaydetme işlemi başarısız:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
+
+  const statsCards = [
+    {
+      title: 'Toplam Öğrenci',
+      value: stats.totalStudents,
+      icon: <FaGraduationCap className="text-blue-500" />,
+      bgColor: 'bg-blue-50'
+    },
+    {
+      title: 'Aktif Kurslar',
+      value: stats.totalCourses,
+      icon: <FaBook className="text-green-500" />,
+      bgColor: 'bg-green-50'
+    },
+    {
+      title: 'Blog Yazıları',
+      value: stats.totalBlogs,
+      icon: <FaNewspaper className="text-purple-500" />,
+      bgColor: 'bg-purple-50'
+    }
+  ];
 
   return (
     <div className="space-y-6">
       {/* İstatistikler */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {stats.map((stat, index) => (
+        {statsCards.map((stat, index) => (
           <div
             key={index}
             className={`${stat.bgColor} rounded-lg p-6 flex items-center justify-between`}
@@ -286,55 +341,92 @@ const DashboardPage = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Durum
                 </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Ödeme
+                </th>
                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   İşlemler
                 </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {students.map((student) => (
-                <tr key={student.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">
-                      {student.name}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{student.email}</div>
-                    <div className="text-sm text-gray-500">{student.phone}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{student.courseName}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {student.registrationDate}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                      {student.status === 'active' ? 'Aktif' : 'Pasif'}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <button
-                      onClick={() => {
-                        setSelectedStudent(student);
-                        setIsModalOpen(true);
-                      }}
-                      className="text-blue-600 hover:text-blue-900 mr-4"
-                      disabled={isLoading}
-                    >
-                      <FaEdit className="inline" />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(student.id)}
-                      className="text-red-600 hover:text-red-900"
-                      disabled={isLoading}
-                    >
-                      {isLoading ? <FaSpinner className="inline animate-spin" /> : <FaTrash className="inline" />}
-                    </button>
+              {isLoading ? (
+                <tr>
+                  <td colSpan="7" className="px-6 py-4 text-center">
+                    <FaSpinner className="inline animate-spin mr-2" />
+                    Yükleniyor...
                   </td>
                 </tr>
-              ))}
+              ) : students.length === 0 ? (
+                <tr>
+                  <td colSpan="7" className="px-6 py-4 text-center text-gray-500">
+                    Henüz öğrenci kaydı bulunmuyor.
+                  </td>
+                </tr>
+              ) : (
+                students.map((student) => (
+                  <tr key={student.id} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm font-medium text-gray-900">
+                        {student.name}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">{student.email}</div>
+                      <div className="text-sm text-gray-500">{student.phone}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">{student.courseName}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {student.registrationDate}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                        student.status === 'active' 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-red-100 text-red-800'
+                      }`}>
+                        {student.status === 'active' ? 'Aktif' : 'Pasif'}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                        student.paymentStatus === 'paid' 
+                          ? 'bg-green-100 text-green-800'
+                          : student.paymentStatus === 'partial'
+                          ? 'bg-yellow-100 text-yellow-800'
+                          : 'bg-red-100 text-red-800'
+                      }`}>
+                        {student.paymentStatus === 'paid' 
+                          ? 'Ödendi' 
+                          : student.paymentStatus === 'partial'
+                          ? 'Kısmi'
+                          : 'Beklemede'}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <button
+                        onClick={() => {
+                          setSelectedStudent(student);
+                          setIsModalOpen(true);
+                        }}
+                        className="text-blue-600 hover:text-blue-900 mr-4"
+                        disabled={isLoading}
+                      >
+                        <FaEdit className="inline" />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(student.id)}
+                        className="text-red-600 hover:text-red-900"
+                        disabled={isLoading}
+                      >
+                        {isLoading ? <FaSpinner className="inline animate-spin" /> : <FaTrash className="inline" />}
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -345,6 +437,7 @@ const DashboardPage = () => {
         onClose={() => setIsModalOpen(false)}
         student={selectedStudent}
         onSave={handleSave}
+        courses={courses}
       />
     </div>
   );
