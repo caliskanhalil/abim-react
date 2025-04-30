@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useState } from 'react';
 import { coursesData } from '../../data/mockCourses';
+import { sendEmail } from '../../api/send';
 
 const ApplicationModal = ({ show, handleClose, courseId }) => {
   const [formData, setFormData] = useState({
@@ -10,11 +10,6 @@ const ApplicationModal = ({ show, handleClose, courseId }) => {
     courseId: courseId || '',
     notes: ''
   });
-
-  useEffect(() => {
-    // EmailJS'i başlat
-    emailjs.init("YOUR_PUBLIC_KEY"); // EmailJS public key'inizi buraya ekleyin
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,27 +25,18 @@ const ApplicationModal = ({ show, handleClose, courseId }) => {
     try {
       const selectedCourse = coursesData.find(c => c.id === formData.courseId);
       
-      const templateParams = {
-        to_name: "ABİM Yönetici", // Alıcı ismi
-        from_name: formData.name,
-        from_email: formData.email,
-        phone: formData.phone,
-        course_name: selectedCourse ? selectedCourse.mainTitle : 'Belirtilmemiş',
-        notes: formData.notes,
-        reply_to: formData.email
-      };
+      const result = await sendEmail({
+        ...formData,
+        courseName: selectedCourse ? selectedCourse.mainTitle : 'Belirtilmemiş'
+      });
 
-      await emailjs.send(
-        'YOUR_SERVICE_ID', // EmailJS service ID
-        'YOUR_TEMPLATE_ID', // EmailJS template ID
-        templateParams
-      );
-      
-      alert('Başvurunuz başarıyla gönderildi!');
-      handleClose();
+      if (result.success) {
+        alert(result.message);
+        handleClose();
+      }
     } catch (error) {
-      console.error('Mail gönderme hatası:', error);
-      alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+      console.error('Başvuru gönderme hatası:', error);
+      alert(error.message || 'Bir hata oluştu. Lütfen tekrar deneyin.');
     }
   };
 
