@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { FaTimes, FaPlus, FaTrash } from 'react-icons/fa';
+import { FaTimes, FaPlus, FaTrash, FaUpload } from 'react-icons/fa';
+import { uploadImage } from '../firebase/services';
 
 const CourseEditModal = ({ isOpen, onClose, course, onSave }) => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,8 @@ const CourseEditModal = ({ isOpen, onClose, course, onSave }) => {
   });
   const [newCurriculumItem, setNewCurriculumItem] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (course) {
@@ -37,6 +40,31 @@ const CourseEditModal = ({ isOpen, onClose, course, onSave }) => {
       });
     }
   }, [course]);
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    if (!allowedTypes.includes(file.type)) {
+      setError('Sadece JPEG, PNG ve WEBP formatları desteklenir.');
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      setError('');
+      const path = `courses/${Date.now()}_${file.name}`;
+      const imageUrl = await uploadImage(file, path);
+      setFormData({ ...formData, imageUrl });
+    } catch (error) {
+      console.error('Resim yükleme hatası:', error);
+      setError('Resim yüklenirken bir hata oluştu.');
+    } finally {
+      setIsLoading(false);
+      setUploadProgress(0);
+    }
+  };
 
   const handleAddCurriculumItem = () => {
     if (newCurriculumItem.trim()) {
@@ -63,16 +91,11 @@ const CourseEditModal = ({ isOpen, onClose, course, onSave }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      onSave(formData);
-      onClose();
-    } catch (error) {
-      console.error('Kaydetme işlemi başarısız:', error);
-    } finally {
-      setIsLoading(false);
+    if (!formData.imageUrl) {
+      setError('Lütfen bir resim yükleyin.');
+      return;
     }
+    onSave(formData);
   };
 
   if (!isOpen) return null;
@@ -122,15 +145,39 @@ const CourseEditModal = ({ isOpen, onClose, course, onSave }) => {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Resim URL
+              Resim
             </label>
-            <input
-              type="url"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              value={formData.imageUrl}
-              onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-            />
+            <div className="flex items-center space-x-4">
+              {formData.imageUrl && (
+                <img
+                  src={formData.imageUrl}
+                  alt="Kurs resmi"
+                  className="h-20 w-20 object-cover rounded-lg"
+                />
+              )}
+              <div className="flex-1">
+                <label className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                  <FaUpload className="mr-2" />
+                  <span>Resim Seç</span>
+                  <input
+                    type="file"
+                    className="hidden"
+                    accept="image/jpeg,image/png,image/webp"
+                    onChange={handleImageUpload}
+                  />
+                </label>
+                {isLoading && (
+                  <div className="mt-2">
+                    <div className="h-2 bg-gray-200 rounded-full">
+                      <div
+                        className="h-2 bg-blue-600 rounded-full transition-all duration-300"
+                        style={{ width: `${uploadProgress}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -237,6 +284,12 @@ const CourseEditModal = ({ isOpen, onClose, course, onSave }) => {
               ))}
             </div>
           </div>
+
+          {error && (
+            <div className="text-red-500 text-sm">
+              {error}
+            </div>
+          )}
 
           <div className="flex justify-end space-x-3 pt-4">
             <button
