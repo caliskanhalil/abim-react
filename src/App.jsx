@@ -1,6 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import AdminLayout from './layouts/AdminLayout';
+import ScrollToTop from './components/ScrollToTop';
+import ScrollUpButton from './components/ScrollUpButton';
 
 // Pages
 import Home from './pages/Home';
@@ -15,10 +17,40 @@ import NotFoundPage from './pages/NotFoundPage';
 // Admin Pages
 import LoginPage from './pages/AdminPage/LoginPage';
 import DashboardPage from './pages/AdminPage/DashboardPage';
+import BlogManagement from './pages/AdminPage/BlogManagement';
+import CourseManagement from './pages/AdminPage/CourseManagement';
+
+// Auth kontrolü
+const isAuthenticated = () => {
+  const token = localStorage.getItem('adminToken');
+  if (!token) return false;
+
+  try {
+    const decoded = JSON.parse(atob(token));
+    const now = new Date().getTime();
+    if (now - decoded.timestamp > 24 * 60 * 60 * 1000) {
+      localStorage.removeItem('adminToken');
+      return false;
+    }
+    return true;
+  } catch {
+    localStorage.removeItem('adminToken');
+    return false;
+  }
+};
+
+const ProtectedRoute = ({ children }) => {
+  if (!isAuthenticated()) {
+    return <Navigate to="/admin/login" replace />;
+  }
+  return children;
+};
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
+      <ScrollUpButton />
       <Routes>
         {/* Main Routes */}
         <Route path="/" element={<MainLayout />}>
@@ -33,9 +65,18 @@ function App() {
 
         {/* Admin Routes */}
         <Route path="/admin/login" element={<LoginPage />} />
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route 
+          path="/admin" 
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<Navigate to="/admin/dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPage />} />
-          {/* Diğer admin sayfaları buraya eklenecek */}
+          <Route path="blog" element={<BlogManagement />} />
+          <Route path="courses" element={<CourseManagement />} />
         </Route>
 
         {/* 404 Page */}
