@@ -6,7 +6,9 @@ import AdminLayout from './layouts/AdminLayout';
 import Home from './pages/Home';
 import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
+import BlogDetail from './pages/BlogPage/BlogDetail';
 import CoursesPage from './pages/CoursesPage';
+import CourseDetail from './pages/CoursesPage/CourseDetail';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -23,7 +25,9 @@ function App() {
           <Route index element={<Home />} />
           <Route path="hakkimizda" element={<AboutPage />} />
           <Route path="blog" element={<BlogPage />} />
+          <Route path="blog/:id" element={<BlogDetail />} />
           <Route path="egitimler" element={<CoursesPage />} />
+          <Route path="egitimler/:id" element={<CourseDetail />} />
           <Route path="iletisim" element={<ContactPage />} />
         </Route>
 
