@@ -13,7 +13,7 @@ import {
   onSnapshot,
   serverTimestamp
 } from 'firebase/firestore';
-import { db } from '../config';
+import { db } from '../firebase/config';
 
 // Helper function to handle Firestore errors
 const handleFirestoreError = (error, operation) => {

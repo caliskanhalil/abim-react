@@ -1,15 +1,11 @@
 import { useState, useEffect } from 'react';
 import { FaPlus, FaEdit, FaTrash, FaSpinner, FaGraduationCap, FaBook, FaNewspaper, FaTimes } from 'react-icons/fa';
-import { 
-  getStudents, 
-  addStudent, 
-  updateStudent, 
-  deleteStudent,
-  getDashboardStats,
-  getCourses,
-  checkCollections,
-  initializeExampleData
-} from '../../firebase/services';
+import {
+  getStudents,
+  addStudent,
+  updateStudent,
+  deleteStudent
+} from "../../services/studentService";
 
 const StudentEditModal = ({ isOpen, onClose, student, onSave, courses }) => {
   const [formData, setFormData] = useState({
