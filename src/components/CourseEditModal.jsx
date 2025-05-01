@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaTimes, FaPlus, FaTrash, FaUpload } from 'react-icons/fa';
-import { uploadImage } from '../firebase/services';
+import { uploadImage } from '../services/uploadService';
 
 const CourseEditModal = ({ isOpen, onClose, course, onSave }) => {
   const [formData, setFormData] = useState({

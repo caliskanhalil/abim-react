@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
 import { FaPlus, FaEdit, FaTrash, FaSpinner } from 'react-icons/fa';
 import CourseEditModal from '../../components/CourseEditModal';
-import { getCourses, addCourse, updateCourse, deleteCourse } from '../../firebase/services';
+import {
+  getCourses,
+  addCourse,
+  updateCourse,
+  deleteCourse
+} from '../../services/courseService';
 
 const CourseManagement = () => {
   const [courses, setCourses] = useState([]);

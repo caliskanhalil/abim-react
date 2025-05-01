@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import { FaPlus, FaEdit, FaTrash, FaSpinner } from 'react-icons/fa';
 import BlogEditModal from '../../components/BlogEditModal';
-import { getBlogs, addBlog, updateBlog, deleteBlog } from '../../firebase/services';
-
+import {
+  getBlogs,
+  addBlog,
+  updateBlog,
+  deleteBlog,
+} from '../../services/blogService';
 const BlogManagement = () => {
   const [blogs, setBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

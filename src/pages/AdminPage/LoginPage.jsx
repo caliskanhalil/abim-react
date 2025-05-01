@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginWithEmail } from '../../firebase/services';
+import { login } from '../../services/authService';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -15,13 +15,11 @@ const LoginPage = () => {
     setIsLoading(true);
 
     try {
-      const { token, user } = await loginWithEmail(email, password);
-      
-      // Token'ı ve kullanıcı bilgilerini localStorage'a kaydet
+      const user = await login(email, password);
+
       localStorage.setItem('adminToken', btoa(JSON.stringify({
-        token,
         username: user.email,
-        timestamp: new Date().getTime()
+        timestamp: new Date().getTime(),
       })));
 
       navigate('/admin/dashboard');
@@ -47,9 +45,7 @@ const LoginPage = () => {
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <label htmlFor="email-address" className="sr-only">
-                E-posta
-              </label>
+              <label htmlFor="email-address" className="sr-only">E-posta</label>
               <input
                 id="email-address"
                 name="email"
@@ -63,9 +59,7 @@ const LoginPage = () => {
               />
             </div>
             <div>
-              <label htmlFor="password" className="sr-only">
-                Şifre
-              </label>
+              <label htmlFor="password" className="sr-only">Şifre</label>
               <input
                 id="password"
                 name="password"
@@ -101,4 +95,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage; 
+export default LoginPage;
