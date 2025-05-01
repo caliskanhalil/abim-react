@@ -1,35 +1,6 @@
 import { Link } from 'react-router-dom';
-import { FaCalendar, FaUser } from 'react-icons/fa';
-
-const blogPosts = [
-  {
-    id: 1,
-    title: "Gençlere Tavsiyeler",
-    excerpt: "Gençlerin kişisel ve mesleki gelişimi için önemli tavsiyeler...",
-    author: "Admin",
-    date: "15 Mart 2024",
-    image: "/blog-1.jpg",
-    slug: "genclere-tavsiyeler"
-  },
-  {
-    id: 2,
-    title: "Eğitimde Yeni Trendler",
-    excerpt: "2024 yılında öne çıkan eğitim trendleri ve yenilikler...",
-    author: "Admin",
-    date: "10 Mart 2024",
-    image: "/blog-2.jpg",
-    slug: "egitimde-yeni-trendler"
-  },
-  {
-    id: 3,
-    title: "Başarı Hikayeleri",
-    excerpt: "Mezunlarımızın ilham veren başarı hikayeleri...",
-    author: "Admin",
-    date: "5 Mart 2024",
-    image: "/blog-3.jpg",
-    slug: "basari-hikayeleri"
-  }
-];
+import { FaClock, FaUser, FaArrowRight } from 'react-icons/fa';
+import { blogData } from '../../../data/mockBlog';
 
 const BlogSection = () => {
   return (
@@ -41,46 +12,52 @@ const BlogSection = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post) => (
-            <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <Link to={`/blog/${post.slug}`}>
-                <img 
-                  src={post.image} 
-                  alt={post.title}
-                  className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+          {blogData.slice(0, 3).map((blog) => (
+            <div
+              key={blog.id}
+              className="group bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="relative">
+                <img
+                  src={blog.imageUrl}
+                  alt={blog.title}
+                  className="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300"
                 />
-              </Link>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm">
+                  {blog.category}
+                </div>
+              </div>
+
               <div className="p-6">
-                <div className="flex items-center text-sm text-gray-500 mb-4 space-x-4">
+                <h2 className="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
+                  {blog.title}
+                </h2>
+                <p className="text-gray-600 mb-4 line-clamp-2">
+                  {blog.summary}
+                </p>
+
+                <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                   <div className="flex items-center">
                     <FaUser className="mr-2" />
-                    <span>{post.author}</span>
+                    <span>{blog.author}</span>
                   </div>
                   <div className="flex items-center">
-                    <FaCalendar className="mr-2" />
-                    <span>{post.date}</span>
+                    <FaClock className="mr-2" />
+                    <span>{blog.readTime}</span>
                   </div>
                 </div>
-                <Link 
-                  to={`/blog/${post.slug}`}
-                  className="block"
-                >
-                  <h3 className="text-xl font-semibold mb-2 hover:text-blue-600 transition-colors">
-                    {post.title}
-                  </h3>
-                </Link>
-                <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                <Link 
-                  to={`/blog/${post.slug}`}
-                  className="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center"
+
+                <Link
+                  to={`/blog/${blog.id}`}
+                  className="w-full bg-gray-100 text-blue-600 px-4 py-2 rounded-lg 
+                           hover:bg-blue-50 transition-colors flex items-center justify-center font-medium"
                 >
                   Devamını Oku
-                  <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
+                  <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
-            </article>
+            </div>
           ))}
         </div>
         

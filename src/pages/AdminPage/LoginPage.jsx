@@ -1,22 +1,35 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { loginWithEmail } from '../../firebase/services';
 
 const LoginPage = () => {
-  const [credentials, setCredentials] = useState({
-    username: '',
-    password: ''
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Örnek login kontrolü
-    if (credentials.username === 'admin' && credentials.password === 'admin123') {
-      localStorage.setItem('adminToken', 'example-token');
+    setError('');
+    setIsLoading(true);
+
+    try {
+      const { token, user } = await loginWithEmail(email, password);
+      
+      // Token'ı ve kullanıcı bilgilerini localStorage'a kaydet
+      localStorage.setItem('adminToken', btoa(JSON.stringify({
+        token,
+        username: user.email,
+        timestamp: new Date().getTime()
+      })));
+
       navigate('/admin/dashboard');
-    } else {
-      setError('Kullanıcı adı veya şifre hatalı!');
+    } catch (error) {
+      console.error('Giriş hatası:', error);
+      setError('E-posta veya şifre hatalı');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -34,29 +47,35 @@ const LoginPage = () => {
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <label htmlFor="username" className="sr-only">Kullanıcı Adı</label>
+              <label htmlFor="email-address" className="sr-only">
+                E-posta
+              </label>
               <input
-                id="username"
-                name="username"
-                type="text"
+                id="email-address"
+                name="email"
+                type="email"
+                autoComplete="email"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Kullanıcı Adı"
-                value={credentials.username}
-                onChange={(e) => setCredentials({...credentials, username: e.target.value})}
+                placeholder="E-posta adresi"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div>
-              <label htmlFor="password" className="sr-only">Şifre</label>
+              <label htmlFor="password" className="sr-only">
+                Şifre
+              </label>
               <input
                 id="password"
                 name="password"
                 type="password"
+                autoComplete="current-password"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                 placeholder="Şifre"
-                value={credentials.password}
-                onChange={(e) => setCredentials({...credentials, password: e.target.value})}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </div>
@@ -70,9 +89,10 @@ const LoginPage = () => {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              disabled={isLoading}
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Giriş Yap
+              {isLoading ? 'Giriş yapılıyor...' : 'Giriş Yap'}
             </button>
           </div>
         </form>

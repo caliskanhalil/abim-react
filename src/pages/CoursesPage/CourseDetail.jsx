@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { FaCalendar, FaClock, FaList, FaArrowLeft, FaUsers, FaChalkboardTeacher, FaGift } from 'react-icons/fa';
 import { coursesData } from '../../data/mockCourses';
+import ApplicationModal from './ApplicationModal';
 
 const CourseDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
   const course = coursesData.find(c => c.id === id);
 
   if (!course) {
@@ -146,7 +148,7 @@ const CourseDetail = () => {
                 geleceğinize ücretsiz yatırım yapın.
               </p>
               <button
-                onClick={() => navigate('/iletisim')}
+                onClick={() => setShowModal(true)}
                 className="bg-blue-500 text-white px-8 py-3 rounded-lg text-lg font-medium
                          hover:bg-blue-600 transition-all"
               >
@@ -156,6 +158,12 @@ const CourseDetail = () => {
           </div>
         </div>
       </div>
+
+      <ApplicationModal 
+        show={showModal}
+        handleClose={() => setShowModal(false)}
+        courseId={id}
+      />
     </>
   );
 };
