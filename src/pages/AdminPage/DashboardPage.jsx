@@ -6,7 +6,9 @@ import {
   updateStudent, 
   deleteStudent,
   getDashboardStats,
-  getCourses
+  getCourses,
+  checkCollections,
+  initializeExampleData
 } from '../../firebase/services';
 
 const StudentEditModal = ({ isOpen, onClose, student, onSave, courses }) => {
@@ -206,9 +208,27 @@ const DashboardPage = () => {
     totalCourses: 0,
     totalBlogs: 0
   });
+  const [isInitializing, setIsInitializing] = useState(false);
 
   useEffect(() => {
-    fetchData();
+    const initializeData = async () => {
+      try {
+        const { hasCoursesData, hasStudentsData } = await checkCollections();
+        
+        if (!hasCoursesData || !hasStudentsData) {
+          setIsInitializing(true);
+          await initializeExampleData();
+          setIsInitializing(false);
+        }
+        
+        await fetchData();
+      } catch (error) {
+        console.error('Initialize data error:', error);
+        setIsInitializing(false);
+      }
+    };
+
+    initializeData();
   }, []);
 
   const fetchData = async () => {

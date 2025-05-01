@@ -1,35 +1,25 @@
-import nodemailer from 'nodemailer';
-
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: import.meta.env.VITE_EMAIL,
-        pass: import.meta.env.VITE_PASSWORD,
-    },
-});
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 export const sendEmail = async (formData) => {
     try {
-        const mailOptions = {
-            from: import.meta.env.VITE_EMAIL,
-            to: import.meta.env.VITE_EMAIL,
-            subject: 'ABİM Kurs Başvurusu',
-            text: `
-            Yeni Kurs Başvurusu
-            
-            Ad Soyad: ${formData.name}
-            E-posta: ${formData.email}
-            Telefon: ${formData.phone}
-            Kurs: ${formData.courseName}
-            Kurs ID: ${formData.courseId}
-            Notlar: ${formData.notes}
-            `,
-        };
+        const response = await fetch(`${API_URL}/api/send`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+            credentials: 'include'
+        });
 
-        await transporter.sendMail(mailOptions);
-        return { success: true, message: 'Başvurunuz başarıyla gönderildi!' };
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || data.message || 'Bir hata oluştu');
+        }
+
+        return { success: true, message: data.message };
     } catch (error) {
-        console.error('E-posta gönderim hatası:', error.message);
-        throw new Error('Başvuru gönderilemedi.');
+        console.error('E-posta gönderim hatası:', error);
+        throw new Error(error.message || 'Başvuru gönderilemedi. Lütfen daha sonra tekrar deneyin.');
     }
 }; 
