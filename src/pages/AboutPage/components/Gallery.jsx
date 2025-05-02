@@ -3,41 +3,62 @@ import { useState } from 'react';
 const galleryData = [
   {
     id: 1,
-    title: "Kurucularımız",
-    text: "Kurucularımız teknoloji tutkusu ile yola çıktı.",
-    image: "/banner.png"
+    title: "Ekibimiz",
+    text: "Ekibimiz teknoloji tutkusu ile yola çıktı.",
+    image: "/ekibimiz.jpg"
   },
+
   {
     id: 2,
-    title: "İlk Ofisimiz",
-    text: "İstanbul'daki ilk ofisimizden bir manzara.",
-    image: "/banner.png"
+    title: "Çalışma Ortamımız",
+    text: "Çalışma ortamımızdan kareler.",
+    image: "/ortam.jpg"
   },
   {
     id: 3,
-    title: "Ekibimiz",
-    text: "Ekip üyelerimizden biri çalışırken.",
-   image: "/banner.png"
+    title: "Eğitimlerimiz",
+    text: "Modern ekipmanlarımız ile eğitim veriyoruz.",
+    image: "/eğitimlerimiz.jpg"
   },
   {
     id: 4,
-    title: "Eğitimlerimiz",
-    text: "Modern ekipmanlarımız ile eğitim veriyoruz.",
-     image: "/banner.png"
+    title: "Sosyal Medyamız",
+    text: "Sosyal medya içeriklerimizden bazı örnekler.",
+    image: "/sosyal-medyamız.jpg"
   },
   {
     id: 5,
-    title: "Projelerimiz",
-    text: "Her gün yeni projeler geliştiriyoruz.",
-    image: "/man-1.jpg"
+    title: "Etkinliklerimiz",
+    text: "Katıldığımız etkinliklerden kareler.",
+    image: "/etkinliklerimiz.jpg"
   },
   {
     id: 6,
-    title: "Çalışma Ortamımız",
-    text: "Bitkilerle dolu yaratıcı bir ofis ortamı.",
-    image: "/banner.png"
-  }
+    title: "Röportajlarımız",
+    text: "Teknofest röportajlarımızdan kareler",
+    image: "/röportajlarımız.jpg"
+  },
+  {
+    id: 7,
+    title: "Seminerlerimiz",
+    text: "Verdiğimiz seminerlerden görüntüler.",
+    image: "/seminerlerimiz.jpg"
+  },
+  {
+    id: 8,
+    title: "Projelerimiz",
+    text: "Her gün yeni projeler geliştiriyoruz.",
+    image: "/abim-logo.png"
+  },
+  {
+    id: 9,
+    title: "İlk Ofis",
+    text: "Adana'daki ilk ofisimizden bir kare.",
+    image: "/ilk-ofis.jpg"
+  },
+
 ];
+
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);

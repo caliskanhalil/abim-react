@@ -1,9 +1,9 @@
 export const coursesData = [
   {
     id: "1",
-    mainTitle: "HTML EĞİTİMİ",
+    mainTitle: "HTML&CSS EĞİTİMİ",
     subtitle: "Eğitim 3 ay sürecektir",
-    imageUrl: "https://picsum.photos/200/300",
+    imageUrl: "/html.jpg",
     content: {
       egitimSuresi: [
         { "Başlangıç": "2025-04-18" },
@@ -13,16 +13,16 @@ export const coursesData = [
         "b etiketi",
         "i etiketi",
         "html giriş",
-        "js giriş"
+        "css giriş"
       ],
-      tarih: "Cumartesi : 14:00"
+      tarih: "Cumartesi : 10:00"
     }
   },
   {
     id: "2",
     mainTitle: "JAVASCRIPT EĞİTİMİ",
     subtitle: "Eğitim 4 ay sürecektir",
-    imageUrl: "https://picsum.photos/200/301",
+    imageUrl: "/js.jpeg",
     content: {
       egitimSuresi: [
         { "Başlangıç": "2025-05-20" },
@@ -34,14 +34,14 @@ export const coursesData = [
         "Fonksiyonlar",
         "DOM Manipülasyonu"
       ],
-      tarih: "Pazar : 13:00"
+      tarih: "Cumartesi : 13:00"
     }
   },
   {
     id: "3",
     mainTitle: "REACT EĞİTİMİ",
     subtitle: "Eğitim 6 ay sürecektir",
-    imageUrl: "https://picsum.photos/200/302",
+    imageUrl: "/react.png",
     content: {
       egitimSuresi: [
         { "Başlangıç": "2025-06-01" },
