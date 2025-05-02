@@ -24,9 +24,9 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">İletişim</h3>
             <ul className="space-y-2 text-gray-300">
-              <li>Email: info@abim.com</li>
-              <li>Telefon: +90 123 456 7890</li>
-              <li>Adres: İstanbul, Türkiye</li>
+              <li>Email:info.abimagd@gmail.com</li>
+              <li>Telefon:+90 (536) 715 41 11</li>
+              <li>Adres: Türkocağı, 24014. Sk. No:2 01020 Seyhan/Adana</li>
             </ul>
           </div>
         </div>
