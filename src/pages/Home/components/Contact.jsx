@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { sendEmail } from '../../../api/send';
+import { sendEmail } from '../../../utils/sendEmail';
 import {
   FaPhone,
   FaEnvelope,

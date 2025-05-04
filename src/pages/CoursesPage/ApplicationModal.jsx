@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { coursesData } from '../../data/mockCourses';
-import { sendEmail } from '../../api/send';
+import { sendEmail } from '../../utils/sendEmail';
 
 const ApplicationModal = ({ show, handleClose, courseId }) => {
   const [formData, setFormData] = useState({
@@ -27,7 +27,8 @@ const ApplicationModal = ({ show, handleClose, courseId }) => {
       
       const result = await sendEmail({
         ...formData,
-        courseName: selectedCourse ? selectedCourse.mainTitle : 'Belirtilmemiş'
+        courseName: selectedCourse ? selectedCourse.mainTitle : 'Belirtilmemiş',
+        type: 'application',
       });
 
       if (result.success) {

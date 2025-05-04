@@ -1,35 +1,6 @@
+// src/components/YouTubeSection.jsx
 import { FaYoutube, FaPlay } from 'react-icons/fa';
-
-const videos = [
-  {
-    id: 1,
-    title: "Yazılım Geliştirme Süreci",
-    description: "Modern yazılım geliştirme süreçleri ve best practice'ler hakkında detaylı bir video.",
-    thumbnail: "/banner.jpg",
-    url: "https://youtube.com/watch?v=example1"
-  },
-  {
-    id: 2,
-    title: "Web Teknolojileri",
-    description: "Frontend ve backend teknolojileri hakkında kapsamlı bir anlatım.",
-    thumbnail: "/slider-2.png",
-    url: "https://youtube.com/watch?v=example2"
-  },
-  {
-    id: 3,
-    title: "Mobil Uygulama Geliştirme",
-    description: "iOS ve Android için mobil uygulama geliştirme temelleri.",
-    thumbnail: "/slider-3.jpg",
-    url: "https://youtube.com/watch?v=example3"
-  },
-  {
-    id: 4,
-    title: "Veri Bilimi ve Yapay Zeka",
-    description: "Veri bilimi ve yapay zeka uygulamaları hakkında bilgilendirici içerik.",
-    thumbnail: "/banner.jpg",
-    url: "https://youtube.com/watch?v=example4"
-  }
-];
+import videos from './youtubeData';
 
 const YouTubeSection = () => {
   return (
@@ -49,7 +20,7 @@ const YouTubeSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {videos.map((video) => (
-            <a 
+            <a
               key={video.id}
               href={video.url}
               target="_blank"
@@ -57,10 +28,10 @@ const YouTubeSection = () => {
               className="group block bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
             >
               <div className="relative">
-                <img 
-                  src={video.thumbnail} 
+                <img
+                  src={video.thumbnail}
                   alt={video.title}
-                  className="w-full aspect-video object-cover"
+                  className="w-full aspect-video object-contain"
                 />
                 <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <FaPlay className="text-white text-4xl" />
@@ -70,9 +41,6 @@ const YouTubeSection = () => {
                 <h3 className="text-lg font-semibold mb-2 group-hover:text-red-600 transition-colors">
                   {video.title}
                 </h3>
-                <p className="text-gray-600 text-sm">
-                  {video.description}
-                </p>
               </div>
             </a>
           ))}
@@ -80,7 +48,7 @@ const YouTubeSection = () => {
 
         <div className="text-center mt-12">
           <a
-            href="https://youtube.com/@channel"
+            href="https://www.youtube.com/@abimagd"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 transition-colors"
@@ -94,4 +62,4 @@ const YouTubeSection = () => {
   );
 };
 
-export default YouTubeSection; 
+export default YouTubeSection;
