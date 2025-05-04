@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Stats from './components/Stats';
 import Message from './components/Message';
 import Courses from './components/Courses';
-import Testimonials from './components/Testimonials';
+import YouTubeSection from '../AboutPage/components/YouTubeSection';
 import BlogSection from './components/BlogSection';
 import Contact from './components/Contact';
 
@@ -28,7 +28,7 @@ const Home = () => {
         <Message />
         <Stats />
         <Courses />
-        <Testimonials />
+        <YouTubeSection />
         <BlogSection />
         <Contact />
       </div>
