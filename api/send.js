@@ -1,4 +1,4 @@
-// Vercel serverless fonksiyonun ana tanımı
+// Vercel serverless fonksiyonun ana tanımı 
 export default async function handler(req, res) {
   // Sadece POST metodu kabul edilir
   if (req.method !== 'POST') {
