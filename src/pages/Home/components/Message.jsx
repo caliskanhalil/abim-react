@@ -13,7 +13,7 @@ const Message = () => {
           <h2 className="text-4xl font-bold mb-6 text-gray-800">Sevgili Gençler!</h2>
           <p className="text-gray-700 text-lg leading-relaxed mb-8">
             "Sizlerden bir şey istiyorum. Heyecan, heyecan, heyecan. Neyin heyecanını 
-            istiyorum biliyor musunuz? Neyin heyecanını istiyorum biliyor musunuz? 
+            istiyorum biliyor musunuz?
             Varoşlarda yaşayıp, şehirlerin kenarlarındaki çöplüklerden, evine yiyecek 
             toplayan çocukları kurtarmanın heyecanını istiyorum."
           </p>

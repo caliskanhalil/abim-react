@@ -10,16 +10,16 @@ export const coursesData = [
         { "Bitiş": "2025-07-10" }
       ],
       mufredat: [
-        "HTML’e giriş",
-        "Başlık etiketi",
+        "HTML’e Giriş",
+        "Başlık Etiketi",
         "Paragraf",
         "Kalın, italik ve altı çizgili metinler",
-        "A etiketi",
-        "İmg etiketi",
+        "A Etiketi",
+        "İmg Etiketi",
         "Listeler",
         "Formlar",
-        "Semantik etiketler",
-        "Proje sonu uygulama"
+        "Semantik Etiketler",
+        "Eğitim Sonu Uygulama"
       ],
       tarih: "Cumartesi : 14:00"
     }
@@ -27,26 +27,30 @@ export const coursesData = [
   {
     id: "2",
     mainTitle: "JAVASCRIPT EĞİTİMİ",
-    subtitle: "Eğitim 4 ay sürecektir",
+    subtitle: "JavaScript eğitimi ile web sitelerine hareket ve etkileşim katmayı öğren!",
     imageUrl: "/js.jpeg",
     content: {
       egitimSuresi: [
-        { "Başlangıç": "2025-05-20" },
-        { "Bitiş": "2025-09-20" }
+        { "Başlangıç": "2025-05-10" },
+        { "Bitiş": "2025-07-10" }
       ],
       mufredat: [
-        "Değişkenler",
+        "JavaScript’e Giriş",
+        "Değişkenler ve Veri Türleri",
+        "Operatörler ve Koşullar",
         "Döngüler",
         "Fonksiyonlar",
-        "DOM Manipülasyonu"
+        "Diziler",
+        "Nesneler",
+        "Eğitim Sonu Uygulama"
       ],
-      tarih: "Cumartesi : 13:00"
+      tarih: "Cumartesi : 12:00"
     }
   },
   {
     id: "3",
-    mainTitle: "REACT EĞİTİMİ",
-    subtitle: "Eğitim 6 ay sürecektir",
+    mainTitle: "GRAFİK TASARIM EĞİTİMİ",
+    subtitle: "Grafik tasarım eğitimi ile hayal ettiğini tasarla!",
     imageUrl: "/react.png",
     content: {
       egitimSuresi: [
@@ -54,12 +58,19 @@ export const coursesData = [
         { "Bitiş": "2025-12-01" }
       ],
       mufredat: [
-        "Component Yapısı",
-        "Props ve State",
-        "Hooks",
-        "Redux"
+        "Arayüzü Tanıyalım",
+        "Araç Çubukları ve Paneller",
+        "Menüler ve Kullanımı",
+        "Layer Kavramı ve Katman Kullanımı",
+        "Renk Bilgisi ve Kullanımı",
+        "Shadow & Light",
+        "Font Kullanımı",
+        "Decupe ve Layer Mask",
+        "Fotoğraf Düzenleme ve Rötüş Teknikleri",
+        "Sosyal Medya Tasarımları",
+        "Broşür & Afiş Tasarım"
       ],
-      tarih: "Cumartesi : 16:00"
+      tarih: "Pazartesi : 20:00"
     }
   }
 ]; 
