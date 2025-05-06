@@ -6,16 +6,22 @@ export const coursesData = [
     imageUrl: "/html.jpg",
     content: {
       egitimSuresi: [
-        { "Başlangıç": "2025-04-18" },
-        { "Bitiş": "2025-05-18" }
+        { "Başlangıç": "2025-05-10" },
+        { "Bitiş": "2025-07-10" }
       ],
       mufredat: [
-        "b etiketi",
-        "i etiketi",
-        "html giriş",
-        "css giriş"
+        "HTML’e giriş",
+        "Başlık etiketi",
+        "Paragraf",
+        "Kalın, italik ve altı çizgili metinler",
+        "A etiketi",
+        "İmg etiketi",
+        "Listeler",
+        "Formlar",
+        "Semantik etiketler",
+        "Proje sonu uygulama"
       ],
-      tarih: "Cumartesi : 10:00"
+      tarih: "Cumartesi : 14:00"
     }
   },
   {
