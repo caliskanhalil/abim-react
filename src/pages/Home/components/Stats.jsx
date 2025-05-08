@@ -3,9 +3,9 @@ import { useEffect } from 'react';
 const Stats = () => {
   useEffect(() => {
     const stats = [
-      { id: 'students', value: 25 },
+      { id: 'students', value: 17 },
       { id: 'courses', value: 4 },
-      { id: 'projects', value: 3 }
+      { id: 'projects', value: 2 }
     ];
 
     stats.forEach(stat => {
@@ -42,7 +42,7 @@ const Stats = () => {
           </div>
           <div>
             <h3 id="projects" className="text-4xl font-bold text-green-500 mb-2">0</h3>
-            <p className="text-gray-600">Proje</p>
+            <p className="text-gray-600">Etkinlik/Seminer Sayısı</p>
           </div>
         </div>
       </div>

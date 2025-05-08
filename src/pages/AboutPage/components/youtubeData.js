@@ -9,45 +9,45 @@ const videos = [
     },
     {
         id: 2,
-        title: "1-) SCRATCH EĞİTİMİ - TEMEL KAVRAMLAR | HAREKETLER",
-        url: "https://www.youtube.com/watch?v=N1vZd3a-WjE",
-        thumbnail: "/scratch.avif"
+        title: "KODLAMAYA İLK ADIM: TEMEL YAZILIM EĞİTİMİ",
+        url: "https://youtube.com/shorts/D4vZTzmLl3o?si=G2f509ZIOGMGmKMw",
+        thumbnail: "/yazılım-eğitimi.jpg"
     },
     {
         id: 3,
-        title: "2-) SCRATCH EĞİTİMİ - TEMEL KAVRAMLAR | GÖRÜNÜM",
-        url: "https://www.youtube.com/watch?v=P0CLnMiaSsM",
+        title: "KODLAMAYA EĞLENCELİ BAŞLANGIÇ: SCRATCH EĞİTİMLERİ",
+        url: "https://youtu.be/N1vZd3a-WjE?si=c6CMnKyKggXMYb-C",
         thumbnail: "/scratch.avif"
     },
     {
         id: 4,
-        title: "MİNİK İNSANLAR",
+        title: "YAPAY ZEKA İLE MİNYATÜR VİDEOLAR OLUŞTURMAK",
         url: "https://www.youtube.com/shorts/7rPBJSjpti4",
-        thumbnail: "/minik.avif"
+        thumbnail: "/minik-insanlar.jpg"
     },
     {
         id: 5,
-        title: "YouTuber Sitesi",
+        title: "THUMBSUP TV İLE MÜKEMMEL ÖLÇEKLENDİRMELER",
         url: "https://www.youtube.com/shorts/1tDQXlwxpdE",
-        thumbnail: "/youtuber.avif"
+        thumbnail: "/thumsup.jpg"
     },
     {
         id: 6,
-        title: "Tasarım Yapmak İstiyorsanız Bilmeniz Gereken Temel Adımlar",
+        title: "TASARIM YAPARKEN DİKKAT EDİLMESİ GEREKEN ADIMLAR!",
         url: "https://www.youtube.com/shorts/n9BtfaaIA3g",
-        thumbnail: "/tasarım.avif"
+        thumbnail: "/webtasarim.jpg"
     },
     {
         id: 7,
-        title: "Kod yazarken sürekli hata mı alıyorsun?",
+        title: "KOD YAZARKEN SÜREKLİ HATA MI ALIYORSUN?",
         url: "https://www.youtube.com/shorts/yLfliZ2cPqQ",
-        thumbnail: "/kod-yazarken.avif"
+        thumbnail: "/hata.jpg"
     },
     {
         id: 8,
-        title: "Bu Teknoloji Hayatımızı Nasıl Değiştiriyor?",
+        title: "BU TEKNOLOJİ HAYATIMIZI NASIL DEĞİŞTİRİYOR? - TRANSHÜMANİZM",
         url: "https://www.youtube.com/shorts/CNgJGSz1BTw",
-        thumbnail: "/bu-teknoloji.avif"
+        thumbnail: "/transhümanizm.jpg"
     },
 
 

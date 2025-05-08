@@ -4,22 +4,28 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 const slides = [
   {
     id: 1,
-    image: '/slider-1.png',
-    title: 'BİN HİKAYE',
-    subtitle: 'ÇOK YAKINDA...',
-    website: 'WWW.ABİMAGD.COM'
+    image: '/banner.jpg',
+    title: '',
+    subtitle: '',
+    website: ''
   },
   {
     id: 2,
-    image: '/slider-2.png',
-    title: 'TEMEL YAZILIM EĞİTİMİ',
-    subtitle: 'Yazılım dünyasına ilk adımınızı atın'
+    image: '/slider.jpg',
+    title: '',
+    subtitle: ''
   },
   {
     id: 3,
-    image: '/slider-3.jpg',
-    title: 'GELECEK TEKNOLOJİDE',
-    subtitle: 'Geleceğin mesleklerini keşfedin'
+    image: '/erbakan-soz.jpg',
+    title: '',
+    subtitle: ''
+  },
+  {
+    id: 4,
+    image: '/temel-yazılım.jpg',
+    title: '',
+    subtitle: ''
   }
 ];
 
@@ -63,7 +69,7 @@ const HeroSlider = () => {
           <div 
             className="absolute inset-0 flex flex-col items-center justify-center"
             style={{
-              background: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7))'
+              background: 'none'
             }}
           >
             <div className="text-white text-center px-4" 
