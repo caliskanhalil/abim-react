@@ -4,26 +4,26 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 const slides = [
   {
     id: 1,
-    image: '/banner.jpg',
+    image: '/slider/banner.jpg',
     title: '',
     subtitle: '',
     website: ''
   },
   {
     id: 2,
-    image: '/slider.jpg',
+    image: '/slider/slider.jpeg',
     title: '',
     subtitle: ''
   },
   {
     id: 3,
-    image: '/erbakan-soz.jpg',
+    image: '/slider/erbakan-soz.jpg',
     title: '',
     subtitle: ''
   },
   {
     id: 4,
-    image: '/temel-yazılım.jpg',
+    image: '/slider/temel-yazılım.jpg',
     title: '',
     subtitle: ''
   }
@@ -49,43 +49,40 @@ const HeroSlider = () => {
   }, []);
 
   return (
-    <div className="relative h-[calc(100vh-80px)] w-full overflow-hidden">
+    <div className="relative w-full aspect-[16/9] sm:aspect-auto sm:h-[60vh] md:h-[80vh] lg:h-[calc(100vh-80px)] overflow-hidden">
       {slides.map((slide, index) => (
-        <div 
+        <div
           key={slide.id}
           style={{
             opacity: index === currentSlide ? 1 : 0,
             visibility: index === currentSlide ? 'visible' : 'hidden',
-            transform: `scale(${index === currentSlide ? '1' : '1.1'})`,
+            transform: `scale(${index === currentSlide ? '1' : '1.05'})`,
             transition: 'all 0.7s ease-in-out'
           }}
           className="absolute inset-0 w-full h-full"
         >
-          <img 
-            src={slide.image} 
+          <img
+            src={slide.image}
             alt={slide.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover aspect-[16/9] sm:aspect-auto"
           />
-          <div 
-            className="absolute inset-0 flex flex-col items-center justify-center"
-            style={{
-              background: 'none'
-            }}
-          >
-            <div className="text-white text-center px-4" 
-                 style={{
-                   transform: `translateY(${index === currentSlide ? '0' : '20px'})`,
-                   opacity: index === currentSlide ? 1 : 0,
-                   transition: 'all 0.7s ease-out 0.2s'
-                 }}>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-wider">
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/30">
+            <div
+              className="text-white text-center px-2 sm:px-4"
+              style={{
+                transform: `translateY(${index === currentSlide ? '0' : '20px'})`,
+                opacity: index === currentSlide ? 1 : 0,
+                transition: 'all 0.7s ease-out 0.2s'
+              }}
+            >
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-wide">
                 {slide.title}
               </h1>
-              <p className="text-xl md:text-3xl mb-4 font-light">
+              <p className="text-sm sm:text-lg md:text-xl lg:text-2xl mb-4 font-light">
                 {slide.subtitle}
               </p>
               {slide.website && (
-                <p className="text-lg md:text-2xl font-medium text-blue-400">
+                <p className="text-base sm:text-lg md:text-xl font-medium text-blue-400">
                   {slide.website}
                 </p>
               )}
@@ -96,25 +93,25 @@ const HeroSlider = () => {
 
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 p-4 rounded-full transition-all z-10 group"
+        className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 p-2 sm:p-4 rounded-full transition-all z-10 group"
       >
-        <FaChevronLeft className="text-white text-2xl group-hover:scale-110 transition-transform" />
+        <FaChevronLeft className="text-white text-xl sm:text-2xl group-hover:scale-110 transition-transform" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 p-4 rounded-full transition-all z-10 group"
+        className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 p-2 sm:p-4 rounded-full transition-all z-10 group"
       >
-        <FaChevronRight className="text-white text-2xl group-hover:scale-110 transition-transform" />
+        <FaChevronRight className="text-white text-xl sm:text-2xl group-hover:scale-110 transition-transform" />
       </button>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-4 h-4 rounded-full transition-all duration-300 ${
-              currentSlide === index 
-                ? 'bg-white scale-110' 
+            className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-300 ${
+              currentSlide === index
+                ? 'bg-white scale-110'
                 : 'bg-white/50 hover:bg-white/75'
             }`}
           />
@@ -124,4 +121,4 @@ const HeroSlider = () => {
   );
 };
 
-export default HeroSlider; 
+export default HeroSlider;

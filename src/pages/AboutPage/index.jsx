@@ -5,7 +5,7 @@ import YouTubeSection from './components/YouTubeSection';
 
 const AboutPage = () => {
   return (
-    <div className="pt-20">
+    <div className="">
       <AboutHero />
       <YouTubeSection />
       <Gallery />

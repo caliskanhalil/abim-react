@@ -16,7 +16,7 @@ const AboutHero = () => {
           </div>
           <div className="md:w-1/2">
             <img 
-              src="/ekibimiz.jpg" 
+              src="/about/ekibimiz.jpg" 
               alt="Hakkımızda" 
               className="rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 w-full max-w-lg mx-auto"
             />
