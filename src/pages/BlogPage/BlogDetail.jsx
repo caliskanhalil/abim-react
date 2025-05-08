@@ -84,22 +84,6 @@ const BlogDetail = () => {
                   {blog.content}
                 </div>
               </div>
-
-              {/* Share Section */}
-              <div className="mt-12 pt-8 border-t">
-                <h3 className="text-lg font-semibold mb-4">Bu Yazıyı Paylaş</h3>
-                <div className="flex gap-4">
-                  <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
-                    Twitter'da Paylaş
-                  </button>
-                  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                    Facebook'ta Paylaş
-                  </button>
-                  <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
-                    WhatsApp'ta Paylaş
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
