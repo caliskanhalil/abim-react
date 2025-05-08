@@ -8,7 +8,7 @@ const AboutHero = () => {
               Hakkımızda
             </h1>
             <h2 className="text-xl md:text-2xl text-gray-600 mb-8">
-            Ücretsiz teknoloji eğitimleriyle geleceği inşa ediyoruz.
+            İlim, Ahlak, Teknolojiyle Geleceği İnşa Et.
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed">
             ABİM olarak “İlim, Ahlak ve Teknoloji” ilkesiyle yola çıkan bir ekibiz. Amacımız, her yaştan bireye ulaşarak ücretsiz teknoloji eğitimleri sunmak ve bilgiye erişimi kolaylaştırmaktır. Donanımlı çalışma ortamımızda modern bilgisayarlar, teknik ekipmanlar ve güçlü bir ekip ruhu ile katılımcılara yazılım, tasarım ve dijital beceriler kazandırıyoruz. Öğrenmeyi, paylaşmayı ve gelişmeyi esas alan bir yapıyla Türkiye’nin dört bir yanından gelen katılımcılara ilham veriyoruz.
@@ -16,7 +16,7 @@ const AboutHero = () => {
           </div>
           <div className="md:w-1/2">
             <img 
-              src="/ERBAKAN.jpg" 
+              src="/ekibimiz.jpg" 
               alt="Hakkımızda" 
               className="rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 w-full max-w-lg mx-auto"
             />
