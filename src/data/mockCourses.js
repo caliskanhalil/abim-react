@@ -28,7 +28,7 @@ export const coursesData = [
     id: "2",
     mainTitle: "JAVASCRIPT EĞİTİMİ",
     subtitle: "JavaScript eğitimi ile web sitelerine hareket ve etkileşim katmayı öğren!",
-    imageUrl: "/course/js.png",
+    imageUrl: "/course/js.jpg",
     content: {
       egitimSuresi: [
         { "Başlangıç": "2025-05-10" },
