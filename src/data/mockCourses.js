@@ -3,7 +3,7 @@ export const coursesData = [
     id: "1",
     mainTitle: "HTML&CSS EĞİTİMİ",
     subtitle: "Eğitim 3 ay sürecektir",
-    imageUrl: "/html.jpeg",
+    imageUrl: "/course/html.jpg",
     content: {
       egitimSuresi: [
         { "Başlangıç": "2025-05-10" },
@@ -28,7 +28,7 @@ export const coursesData = [
     id: "2",
     mainTitle: "JAVASCRIPT EĞİTİMİ",
     subtitle: "JavaScript eğitimi ile web sitelerine hareket ve etkileşim katmayı öğren!",
-    imageUrl: "/js.png",
+    imageUrl: "/course/js.png",
     content: {
       egitimSuresi: [
         { "Başlangıç": "2025-05-10" },
@@ -51,7 +51,7 @@ export const coursesData = [
     id: "3",
     mainTitle: "PHOTOSHOP EĞİTİMİ",
     subtitle: "Grafik tasarım eğitimi ile hayal ettiğini tasarla!",
-    imageUrl: "/photoshop.png",
+    imageUrl: "/course/photoshop.png",
     content: {
       egitimSuresi: [
         { "Başlangıç": "2025-06-01" },

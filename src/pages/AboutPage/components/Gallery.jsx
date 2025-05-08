@@ -5,56 +5,56 @@ const galleryData = [
     id: 1,
     title: "Ekibimiz",
     text: "Ekibimiz teknoloji tutkusu ile yola çıktı.",
-    image: "/ekibimiz.jpg"
+    image: "/about/ekibimiz.jpg"
   },
 
   {
     id: 2,
     title: "Çalışma Ortamımız",
     text: "Çalışma ortamımızdan kareler.",
-    image: "/ortam.jpg"
+    image: "/about/ortam.jpg"
   },
   {
     id: 3,
     title: "Eğitimlerimiz",
     text: "Modern ekipmanlarımız ile eğitim veriyoruz.",
-    image: "/eğitimlerimiz.jpg"
+    image: "/about/eğitimlerimiz.jpg"
   },
   {
     id: 4,
     title: "Sosyal Medyamız",
     text: "Sosyal medya içeriklerimizden bazı örnekler.",
-    image: "/sosyal-medyamız.jpg"
+    image: "/about/sosyal-medyamız.jpg"
   },
   {
     id: 5,
     title: "Etkinliklerimiz",
     text: "Katıldığımız etkinliklerden kareler.",
-    image: "/etkinliklerimiz.jpg"
+    image: "/about/etkinliklerimiz.jpg"
   },
   {
     id: 6,
     title: "Röportajlarımız",
     text: "Teknofest röportajlarımızdan kareler",
-    image: "/röportajlarımız.jpg"
+    image: "/about/röportajlarımız.jpg"
   },
   {
     id: 7,
     title: "Seminerlerimiz",
     text: "Verdiğimiz seminerlerden görüntüler.",
-    image: "/seminerlerimiz.jpg"
+    image: "/about/seminerlerimiz.jpg"
   },
   {
     id: 8,
     title: "Projelerimiz",
     text: "Her gün yeni projeler geliştiriyoruz.",
-    image: "/abim-logo.png"
+    image: "/about/abim-logo.png"
   },
   {
     id: 9,
     title: "İlk Ofis",
     text: "Adana'daki ilk ofisimizden bir kare.",
-    image: "/ilk-ofis.jpg"
+    image: "/about/ilk-ofis.jpg"
   },
 
 ];

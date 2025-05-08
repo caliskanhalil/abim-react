@@ -51,7 +51,7 @@ Bu nedenle, CRISPR teknolojisinin gelişiminde tüm paydaşların katılımı ve
 CRISPR teknolojisi, genetik biliminde devrim niteliğinde bir adım olabilir, ancak bu adımı atarken dikkatli olmalıyız. Sadece bilimsel ilerlemenin değil, aynı zamanda insanlığın refahının ve doğal dünyanın korunmasının da önemli olduğunu unutmamalıyız.`,
     author: "Emrullah Çalışkan",
     date: "2025-05-08",
-    imageUrl: "/crispr.jpg",
+    imageUrl: "/blog/crispr.jpg",
     category: "Teknoloji",
     readTime: "8 dakika"
   },
@@ -101,7 +101,7 @@ CRISPR teknolojisi, genetik biliminde devrim niteliğinde bir adım olabilir, an
 Bu film seçkisi, yazılımcılar için ilham verici ve düşündürücü olabilecek çeşitli konuları ele alıyor. İzleyicilere hem teknik açıdan hem de insanın teknolojiyle olan etkileşimi üzerinden düşündürücü bir deneyim sunabilirler.`,
     author: "Emrullah Çalışkan",
     date: "2025-05-10",
-    imageUrl: "/film-oneri.jpg",
+    imageUrl: "/blog/film-oneri.jpg",
     category: "Film Önerisi",
     readTime: "9 dakika"
   },
@@ -144,7 +144,7 @@ Belirli bir konuda veri analizi yapabilen bir Python programı yazın. Örneğin
 Algoritma öğrenmeye başlamak, sürekli çaba ve azim gerektiren bir yolculuktur. Temel kavramları anlamak, doğru programlama dili seçimi, online kaynakları kullanma, kitaplar okuma ve bolca pratik yapma ile bu konuda yeteneklerinizi geliştirebilirsiniz. Algoritma öğrenmek zaman alabilir, ancak sabır ve düzenli çaba ile öğrendiklerinizi kalıcı hale getirebilir ve bu alandaki becerilerinizi geliştirebilirsiniz. Başarılar dilerim!`,
     author: "Emrullah Çalışkan",
     date: "2024-5-05-12",
-    imageUrl: "/algoritma.jpg",
+    imageUrl: "/blog/algoritma.jpg",
     category: "Yazılım",
     readTime: "5 dakika"
   }
