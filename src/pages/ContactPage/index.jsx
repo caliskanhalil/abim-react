@@ -17,7 +17,7 @@ const ContactPage = () => {
         <link rel="canonical" href="https://www.abimagd.com/iletisim" />
       </Helmet>
 
-      <div className="pt-20">
+      <div className="">
         <Contact showContactInfo={true} />
 
         {/* Map Section */}
