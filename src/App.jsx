@@ -19,6 +19,7 @@ import LoginPage from './pages/AdminPage/LoginPage';
 import DashboardPage from './pages/AdminPage/DashboardPage';
 import BlogManagement from './pages/AdminPage/BlogManagement';
 import CourseManagement from './pages/AdminPage/CourseManagement';
+import EkibeKatil from './pages/EkibeKatil';
 
 // Auth kontrolü
 const isAuthenticated = () => {
@@ -60,7 +61,8 @@ function App() {
           <Route path="blog/:id" element={<BlogDetail />} />
           <Route path="egitimler" element={<CoursesPage />} />
           <Route path="egitimler/:id" element={<CourseDetail />} />
-          <Route path="iletisim" element={<ContactPage />} />
+          <Route path="iletisim" element={<ContactPage />} /> 
+           <Route path="/ekibe-katil" element={<EkibeKatil />} />         
         </Route>
 
         {/* Admin Routes */}

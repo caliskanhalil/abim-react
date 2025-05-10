@@ -8,6 +8,8 @@ import Courses from './components/Courses';
 import YouTubeSection from '../AboutPage/components/YouTubeSection';
 import BlogSection from './components/BlogSection';
 import Contact from './components/Contact';
+import JoinUs from "../../components/JoinUs";
+
 
 const Home = () => {
   return (
@@ -30,6 +32,7 @@ const Home = () => {
         <Courses />
         <YouTubeSection />
         <BlogSection />
+        <JoinUs />
         <Contact />
       </div>
     </>
