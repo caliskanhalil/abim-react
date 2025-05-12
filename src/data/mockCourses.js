@@ -1,13 +1,15 @@
-export const coursesData = [
-  {
+export const coursesData = [{
     id: "1",
     mainTitle: "HTML&CSS EĞİTİMİ",
-    subtitle: "Eğitim 3 ay sürecektir",
+    subtitle: "HTML eğitimi ile web sitelerinin iskeletini kurmayı ve içerikleri düzenlemeyi öğren!",
     imageUrl: "/course/html.jpg",
     content: {
-      egitimSuresi: [
-        { "Başlangıç": "2025-05-10" },
-        { "Bitiş": "2025-07-10" }
+      egitimSuresi: [{
+          "Başlangıç": "2025-05-10"
+        },
+        {
+          "Bitiş": "2025-07-10"
+        }
       ],
       mufredat: [
         "HTML’e Giriş",
@@ -30,9 +32,12 @@ export const coursesData = [
     subtitle: "JavaScript eğitimi ile web sitelerine hareket ve etkileşim katmayı öğren!",
     imageUrl: "/course/js.jpg",
     content: {
-      egitimSuresi: [
-        { "Başlangıç": "2025-05-10" },
-        { "Bitiş": "2025-07-10" }
+      egitimSuresi: [{
+          "Başlangıç": "2025-05-10"
+        },
+        {
+          "Bitiş": "2025-07-10"
+        }
       ],
       mufredat: [
         "JavaScript’e Giriş",
@@ -53,9 +58,12 @@ export const coursesData = [
     subtitle: "Grafik tasarım eğitimi ile hayal ettiğini tasarla!",
     imageUrl: "/course/photoshop.png",
     content: {
-      egitimSuresi: [
-        { "Başlangıç": "2025-06-01" },
-        { "Bitiş": "2025-12-01" }
+      egitimSuresi: [{
+          "Başlangıç": "2025-06-01"
+        },
+        {
+          "Bitiş": "2025-12-01"
+        }
       ],
       mufredat: [
         "Arayüzü Tanıyalım",
@@ -73,4 +81,4 @@ export const coursesData = [
       tarih: "Pazartesi : 20:00"
     }
   }
-]; 
+];
