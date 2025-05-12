@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,17 +18,23 @@ const Header = () => {
             <span className="md:hidden text-2xl font-bold text-gray-800">
               ABİM
             </span>
-            
+
             {/* Desktop Logo (ABİM | İlim, Ahlak ve Teknoloji) */}
-            <div className="hidden md:flex items-center space-x-2">
-              <span className="text-2xl font-bold text-gray-800">ABİM</span>
+            <div className="hidden md:flex items-center space-x-2 h-16">
+              <img
+                src="../../logo.png"
+                alt="ABİM Logo"
+                className="h-10 w-auto object-contain"
+              />
               <span className="text-gray-500">|</span>
-              <span className="text-lg text-gray-600">İlim, Ahlak ve Teknoloji</span>
+              <span className="text-lg text-gray-600">
+                İlim, Ahlak ve Teknoloji
+              </span>
             </div>
           </Link>
 
           {/* Mobil Menü Butonu */}
-          <button 
+          <button
             className="md:hidden text-gray-600 hover:text-gray-900"
             onClick={toggleMenu}
           >
@@ -37,11 +43,36 @@ const Header = () => {
 
           {/* Desktop Menü */}
           <div className="hidden md:flex space-x-6">
-            <Link to="/" className="text-gray-600 hover:text-gray-900 transition-colors">Ana Sayfa</Link>
-            <Link to="/hakkimizda" className="text-gray-600 hover:text-gray-900 transition-colors">Hakkımızda</Link>
-            <Link to="/egitimler" className="text-gray-600 hover:text-gray-900 transition-colors">Eğitimler</Link>
-            <Link to="/blog" className="text-gray-600 hover:text-gray-900 transition-colors">Blog</Link>
-            <Link to="/iletisim" className="text-gray-600 hover:text-gray-900 transition-colors">İletişim</Link>
+            <Link
+              to="/"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              Ana Sayfa
+            </Link>
+            <Link
+              to="/hakkimizda"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              Hakkımızda
+            </Link>
+            <Link
+              to="/egitimler"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              Eğitimler
+            </Link>
+            <Link
+              to="/blog"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              Blog
+            </Link>
+            <Link
+              to="/iletisim"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              İletişim
+            </Link>
           </div>
         </div>
 
@@ -49,36 +80,36 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4">
             <div className="flex flex-col space-y-4">
-              <Link 
-                to="/" 
+              <Link
+                to="/"
                 className="text-gray-600 hover:text-gray-900 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Ana Sayfa
               </Link>
-              <Link 
-                to="/hakkimizda" 
+              <Link
+                to="/hakkimizda"
                 className="text-gray-600 hover:text-gray-900 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Hakkımızda
               </Link>
-              <Link 
-                to="/egitimler" 
+              <Link
+                to="/egitimler"
                 className="text-gray-600 hover:text-gray-900 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Eğitimler
               </Link>
-              <Link 
-                to="/blog" 
+              <Link
+                to="/blog"
                 className="text-gray-600 hover:text-gray-900 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Blog
               </Link>
-              <Link 
-                to="/iletisim" 
+              <Link
+                to="/iletisim"
                 className="text-gray-600 hover:text-gray-900 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -92,4 +123,4 @@ const Header = () => {
   );
 };
 
-export default Header; 
+export default Header;

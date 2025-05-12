@@ -1,32 +1,32 @@
-import { useState, useEffect } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useState, useEffect } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const slides = [
   {
     id: 1,
-    image: '/slider/banner.jpg',
-    title: '',
-    subtitle: '',
-    website: ''
+    image: "/slider/banner.jpg",
+    title: "",
+    subtitle: "",
+    website: "",
   },
   {
     id: 2,
-    image: '/slider/slider.jpeg',
-    title: '',
-    subtitle: ''
+    image: "/slider/slider.jpeg",
+    title: "",
+    subtitle: "",
   },
   {
     id: 3,
-    image: '/slider/erbakan-soz.jpg',
-    title: '',
-    subtitle: ''
+    image: "/slider/erbakan-soz.jpg",
+    title: "",
+    subtitle: "",
   },
   {
     id: 4,
-    image: '/slider/temel-yazılım.jpg',
-    title: '',
-    subtitle: ''
-  }
+    image: "/slider/temel-yazılım.jpg",
+    title: "",
+    subtitle: "",
+  },
 ];
 
 const HeroSlider = () => {
@@ -49,15 +49,15 @@ const HeroSlider = () => {
   }, []);
 
   return (
-    <div className="relative w-full aspect-[16/9] sm:aspect-auto sm:h-[60vh] md:h-[80vh] lg:h-[calc(100vh-80px)] overflow-hidden">
+    <div className="relative w-full aspect-[16/9] sm:aspect-auto sm:h-[60vh] md:h-[80vh] lg:h-[calc(100vh-10px)] overflow-hidden">
       {slides.map((slide, index) => (
         <div
           key={slide.id}
           style={{
             opacity: index === currentSlide ? 1 : 0,
-            visibility: index === currentSlide ? 'visible' : 'hidden',
-            transform: `scale(${index === currentSlide ? '1' : '1.05'})`,
-            transition: 'all 0.7s ease-in-out'
+            visibility: index === currentSlide ? "visible" : "hidden",
+            transform: `scale(${index === currentSlide ? "1" : "1.05"})`,
+            transition: "all 0.7s ease-in-out",
           }}
           className="absolute inset-0 w-full h-full"
         >
@@ -66,13 +66,15 @@ const HeroSlider = () => {
             alt={slide.title}
             className="w-full h-full object-cover aspect-[16/9] sm:aspect-auto"
           />
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/30">
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
             <div
               className="text-white text-center px-2 sm:px-4"
               style={{
-                transform: `translateY(${index === currentSlide ? '0' : '20px'})`,
+                transform: `translateY(${
+                  index === currentSlide ? "0" : "20px"
+                })`,
                 opacity: index === currentSlide ? 1 : 0,
-                transition: 'all 0.7s ease-out 0.2s'
+                transition: "all 0.7s ease-out 0.2s",
               }}
             >
               <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-wide">
@@ -111,8 +113,8 @@ const HeroSlider = () => {
             onClick={() => setCurrentSlide(index)}
             className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-300 ${
               currentSlide === index
-                ? 'bg-white scale-110'
-                : 'bg-white/50 hover:bg-white/75'
+                ? "bg-white scale-110"
+                : "bg-white/50 hover:bg-white/75"
             }`}
           />
         ))}
