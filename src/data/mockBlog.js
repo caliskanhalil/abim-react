@@ -1,5 +1,4 @@
-export const blogData = [
-  {
+export const blogData = [{
     id: "1",
     title: "CRISPR Teknolojisi: Genetik Mucizeye Doğru",
     summary: "Günümüzde, genetik bilimindeki en heyecan verici gelişmelerden biri, CRISPR teknolojisi olarak adlandırılan bir keşiftir.",
@@ -51,7 +50,7 @@ Bu nedenle, CRISPR teknolojisinin gelişiminde tüm paydaşların katılımı ve
 CRISPR teknolojisi, genetik biliminde devrim niteliğinde bir adım olabilir, ancak bu adımı atarken dikkatli olmalıyız. Sadece bilimsel ilerlemenin değil, aynı zamanda insanlığın refahının ve doğal dünyanın korunmasının da önemli olduğunu unutmamalıyız.`,
     author: "Emrullah Çalışkan",
     date: "2025-05-08",
-    imageUrl: "/blog/crispr.jpg",
+    imageUrl: "/blog/crispr.webp",
     category: "Teknoloji",
     readTime: "8 dakika"
   },
@@ -101,7 +100,7 @@ CRISPR teknolojisi, genetik biliminde devrim niteliğinde bir adım olabilir, an
 Bu film seçkisi, yazılımcılar için ilham verici ve düşündürücü olabilecek çeşitli konuları ele alıyor. İzleyicilere hem teknik açıdan hem de insanın teknolojiyle olan etkileşimi üzerinden düşündürücü bir deneyim sunabilirler.`,
     author: "Emrullah Çalışkan",
     date: "2025-05-10",
-    imageUrl: "/blog/film-oneri.jpg",
+    imageUrl: "/blog/film-oneri.webp",
     category: "Film Önerisi",
     readTime: "9 dakika"
   },
@@ -144,7 +143,7 @@ Belirli bir konuda veri analizi yapabilen bir Python programı yazın. Örneğin
 Algoritma öğrenmeye başlamak, sürekli çaba ve azim gerektiren bir yolculuktur. Temel kavramları anlamak, doğru programlama dili seçimi, online kaynakları kullanma, kitaplar okuma ve bolca pratik yapma ile bu konuda yeteneklerinizi geliştirebilirsiniz. Algoritma öğrenmek zaman alabilir, ancak sabır ve düzenli çaba ile öğrendiklerinizi kalıcı hale getirebilir ve bu alandaki becerilerinizi geliştirebilirsiniz. Başarılar dilerim!`,
     author: "Emrullah Çalışkan",
     date: "2024-5-05-12",
-    imageUrl: "/blog/algoritma.jpg",
+    imageUrl: "/blog/algoritma.webp",
     category: "Yazılım",
     readTime: "5 dakika"
   }

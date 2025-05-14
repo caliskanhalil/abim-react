@@ -1,19 +1,34 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import Contact from '../../pages/Home/components/Contact';
+import React from "react";
+import { Helmet } from "react-helmet";
+import Contact from "../../pages/Home/components/Contact";
 
 const ContactPage = () => {
   return (
     <>
       <Helmet>
         <title>İletişim - ABİM Adana Anadolu Gençlik Derneği</title>
-        <meta name="description" content="Adana Anadolu Gençlik Derneği ile iletişime geçin. Adres: Türkocağı, 24014. Sk. No:2, 01020 Seyhan/Adana" />
-        <meta name="keywords" content="ABİM iletişim, Adana Gençlik Derneği iletişim, AGD Adana iletişim" />
-        <meta property="og:title" content="İletişim - ABİM Adana Anadolu Gençlik Derneği" />
-        <meta property="og:description" content="Adana Anadolu Gençlik Derneği ile iletişime geçin. Sorularınız ve önerileriniz için bize ulaşın." />
+        <meta
+          name="description"
+          content="Adana Anadolu Gençlik Derneği ile iletişime geçin. Adres: Türkocağı, 24014. Sk. No:2, 01020 Seyhan/Adana"
+        />
+        <meta
+          name="keywords"
+          content="ABİM iletişim, Adana Gençlik Derneği iletişim, AGD Adana iletişim"
+        />
+        <meta
+          property="og:title"
+          content="İletişim - ABİM Adana Anadolu Gençlik Derneği"
+        />
+        <meta
+          property="og:description"
+          content="Adana Anadolu Gençlik Derneği ile iletişime geçin. Sorularınız ve önerileriniz için bize ulaşın."
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.abimagd.com/iletisim" />
-        <meta property="og:image" content="https://www.abimagd.com/contact-og-image.jpg" />
+        <meta
+          property="og:image"
+          content="https://www.abimagd.com/contact-og-image.jpg"
+        />
         <link rel="canonical" href="https://www.abimagd.com/iletisim" />
       </Helmet>
 
@@ -44,4 +59,3 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
-
