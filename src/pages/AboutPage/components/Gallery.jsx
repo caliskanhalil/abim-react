@@ -48,7 +48,7 @@ const galleryData = [
     id: 8,
     title: "Projelerimiz",
     text: "Her gün yeni projeler geliştiriyoruz.",
-    image: "/about/abim-logo.webp",
+    image: "/about/abim-logo.png",
   },
   {
     id: 9,
