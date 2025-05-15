@@ -1,64 +1,62 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const galleryData = [
   {
     id: 1,
     title: "Ekibimiz",
     text: "Ekibimiz teknoloji tutkusu ile yola çıktı.",
-    image: "/about/ekibimiz.jpg"
+    image: "/about/ekibimiz.webp",
   },
 
   {
     id: 2,
     title: "Çalışma Ortamımız",
     text: "Çalışma ortamımızdan kareler.",
-    image: "/about/ortam.jpg"
+    image: "/about/ortam.webp",
   },
   {
     id: 3,
     title: "Eğitimlerimiz",
     text: "Modern ekipmanlarımız ile eğitim veriyoruz.",
-    image: "/about/eğitimlerimiz.jpg"
+    image: "/about/eğitimlerimiz.webp",
   },
   {
     id: 4,
     title: "Sosyal Medyamız",
     text: "Sosyal medya içeriklerimizden bazı örnekler.",
-    image: "/about/sosyal-medyamız.jpg"
+    image: "/about/sosyal-medyamız.webp",
   },
   {
     id: 5,
     title: "Etkinliklerimiz",
     text: "Katıldığımız etkinliklerden kareler.",
-    image: "/about/etkinliklerimiz.jpg"
+    image: "/about/etkinliklerimiz.webp",
   },
   {
     id: 6,
     title: "Röportajlarımız",
     text: "Teknofest röportajlarımızdan kareler",
-    image: "/about/röportajlarımız.jpg"
+    image: "/about/röportajlarımız.webp",
   },
   {
     id: 7,
     title: "Seminerlerimiz",
     text: "Verdiğimiz seminerlerden görüntüler.",
-    image: "/about/seminerlerimiz.jpg"
+    image: "/about/seminerlerimiz.webp",
   },
   {
     id: 8,
     title: "Projelerimiz",
     text: "Her gün yeni projeler geliştiriyoruz.",
-    image: "/about/abim-logo.png"
+    image: "/about/abim-logo.webp",
   },
   {
     id: 9,
     title: "İlk Ofis",
     text: "Adana'daki ilk ofisimizden bir kare.",
-    image: "/about/ilk-ofis.jpg"
+    image: "/about/ilk-ofis.webp",
   },
-
 ];
-
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -69,16 +67,16 @@ const Gallery = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           Bizden Kareler
         </h2>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {galleryData.map((item) => (
-            <div 
+            <div
               key={item.id}
               className="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer"
               onClick={() => setSelectedImage(item)}
             >
-              <img 
-                src={item.image} 
+              <img
+                src={item.image}
                 alt={item.title}
                 className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-300"
               />
@@ -86,9 +84,7 @@ const Gallery = () => {
                 <h3 className="text-white text-xl font-semibold mb-2">
                   {item.title}
                 </h3>
-                <p className="text-white/90 text-sm">
-                  {item.text}
-                </p>
+                <p className="text-white/90 text-sm">{item.text}</p>
               </div>
             </div>
           ))}
@@ -97,16 +93,16 @@ const Gallery = () => {
 
       {/* Modal */}
       {selectedImage && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
           onClick={() => setSelectedImage(null)}
         >
-          <div 
+          <div
             className="bg-white rounded-xl overflow-hidden max-w-4xl w-full"
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
-            <img 
-              src={selectedImage.image} 
+            <img
+              src={selectedImage.image}
               alt={selectedImage.title}
               className="w-full h-[400px] object-cover"
             />
@@ -121,4 +117,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery; 
+export default Gallery;
